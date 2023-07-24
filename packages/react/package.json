@@ -2,7 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "react common methods",
-  "module": "index.js",
+  "module": "index.ts",
   "keywords": [],
   "dependencies": {
     "shared": "workspace:*"

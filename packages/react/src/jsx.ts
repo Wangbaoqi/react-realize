@@ -27,29 +27,43 @@ export const ReactElement = (
 	return element;
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const RESERVED_PROPS = {
+	key: true,
+	ref: true,
+	__self: true,
+	__source: true
+};
+
+const hasValidKey = (config: any): boolean => {
+	return config.key !== undefined;
+};
+
+const hasValidRef = (config: any): boolean => {
+	return config.ref !== undefined;
+};
+
 export const jsx = (type: ElementType, conf: any, ...child: any[]) => {
 	let key: Key = null;
 	let ref: Ref = null;
 
 	const props: Props = {};
 
+	if (hasValidKey(conf)) {
+		key = `${conf.key}`;
+	}
+
+	if (hasValidRef(conf)) {
+		ref = `${conf.ref}`;
+	}
+
+	// handle jsx properties
 	for (const prop in conf) {
 		const val = conf[prop];
-		if (prop === 'key') {
-			if (val !== undefined) {
-				key = `${val}`;
-			}
-			continue;
-		}
-		if (prop === 'ref') {
-			if (val !== undefined) {
-				ref = `${val}`;
-			}
-			continue;
-		}
 
-		if (Object.hasOwnProperty.call(conf, prop)) {
+		if (
+			Object.hasOwnProperty.call(conf, prop) &&
+			!RESERVED_PROPS.hasOwnProperty.call(conf, prop)
+		) {
 			props[prop] = val;
 		}
 
