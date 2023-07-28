@@ -10,7 +10,6 @@ const { name, module } = getPackageJSON('react');
 const pkgPath = resolvePackagePath(name);
 const pkgDistPath = resolvePackagePath(name, true);
 
-console.log(module, 'module');
 export default [
 	{
 		input: `${pkgPath}/${module}`,

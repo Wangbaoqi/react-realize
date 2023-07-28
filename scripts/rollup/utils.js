@@ -9,7 +9,7 @@ import cjs from '@rollup/plugin-commonjs';
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const pkgPath = path.resolve(__dirname, '../../packages');
-const distPath = path.resolve(__dirname, '../../dist/node_modules');
+const distPath = path.resolve(__dirname, '../../build/node_modules');
 
 /**
  * resolve package path

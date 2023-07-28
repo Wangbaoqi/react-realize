@@ -8,8 +8,8 @@ import {
 	ElementType
 } from 'shared/ReactTypes';
 
-// react.createElement
-
+// react source code here params (type, key, ref, self, source, owner, props)
+// self、source、 owner params are used development environments
 export const ReactElement = (
 	type: Type,
 	key: Key,
@@ -42,42 +42,78 @@ const hasValidRef = (config: any): boolean => {
 	return config.ref !== undefined;
 };
 
-export const jsx = (type: ElementType, conf: any, ...child: any[]) => {
+export const jsx = (type: ElementType, conf: any, maybeKey: any) => {
 	let key: Key = null;
 	let ref: Ref = null;
 
 	const props: Props = {};
 
+	if (maybeKey !== undefined) {
+		key = '' + maybeKey;
+	}
+
 	if (hasValidKey(conf)) {
-		key = `${conf.key}`;
+		key = '' + conf.key;
 	}
 
 	if (hasValidRef(conf)) {
-		ref = `${conf.ref}`;
+		ref = conf.ref;
 	}
 
 	// handle jsx properties
 	for (const prop in conf) {
 		const val = conf[prop];
-
 		if (
 			Object.hasOwnProperty.call(conf, prop) &&
-			!RESERVED_PROPS.hasOwnProperty.call(conf, prop)
+			// eslint-disable-next-line no-prototype-builtins
+			!RESERVED_PROPS.hasOwnProperty(prop)
 		) {
 			props[prop] = val;
 		}
-
-		const childLength = child.length;
-		if (childLength) {
-			if (childLength === 1) {
-				props.children = child[0];
-			} else {
-				props.children = child;
-			}
-		}
 	}
-
 	return ReactElement(type, key, ref, props);
 };
 
 export const jsxDEV = jsx;
+
+export const createElement = (
+	type: ElementType,
+	conf: any,
+	children: any[]
+) => {
+	let key: Key = null;
+	let ref: Ref = null;
+	const props: Props = {};
+
+	if (conf != null) {
+		if (hasValidRef(conf)) {
+			ref = conf.ref;
+		}
+
+		if (hasValidKey(conf)) {
+			key = '' + conf.key;
+		}
+
+		for (const prop in conf) {
+			if (
+				Object.hasOwnProperty.call(conf, prop) &&
+				!Object.hasOwnProperty.call(RESERVED_PROPS, prop)
+			) {
+				props[prop] = conf[prop];
+			}
+		}
+	}
+
+	const childLen = children.length;
+	if (childLen === 1) {
+		props.childLen = children;
+	} else if (childLen > 1) {
+		const childArray = Array(childLen);
+		for (let i = 0; i < childLen; i++) {
+			childArray.push(children[i]);
+		}
+		props.children = childArray;
+	}
+
+	return ReactElement(type, key, ref, props);
+};
