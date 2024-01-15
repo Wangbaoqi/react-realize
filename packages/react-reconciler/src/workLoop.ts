@@ -49,14 +49,15 @@ function workLoop() {
 }
 
 function performanceUnitOfWork(fiber: FiberNode) {
-	const next = beginWork(fiber);
+	// return child fiberNode
+	const next: FiberNode = beginWork(fiber);
 
 	fiber.memoizedProps = fiber.pendingProps;
 
 	if (next === null) {
 		completeUnitOfWork(fiber);
 	} else {
-		workInProgress = null;
+		workInProgress = next;
 	}
 }
 

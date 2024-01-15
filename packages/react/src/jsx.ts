@@ -79,7 +79,7 @@ export const jsxDEV = jsx;
 export const createElement = (
 	type: ElementType,
 	conf: any,
-	children: any[]
+	...children: any[]
 ) => {
 	let key: Key = null;
 	let ref: Ref = null;

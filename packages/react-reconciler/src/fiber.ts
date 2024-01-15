@@ -12,13 +12,16 @@ export class FiberNode {
 	child: FiberNode | null;
 	sibling: FiberNode | null;
 	index: number;
-
 	ref: Ref;
 	pendingProps: Props | null;
 	memoizedProps: Props | null;
 	memoizedState: any;
+
+	// current and workInProgress
 	alternate: FiberNode | null;
+	// sideEffects flags
 	flags: Flags;
+	// update queue
 	updateQueue: unknown;
 
 	constructor(tag: workTag, pendingProps: Props, key: Key) {
@@ -27,7 +30,7 @@ export class FiberNode {
 		this.stateNode = null;
 		this.type = null;
 
-		// tree
+		// fiber tree
 		this.return = null;
 		this.sibling = null;
 		this.child = null;
@@ -39,18 +42,19 @@ export class FiberNode {
 		this.pendingProps = pendingProps;
 		this.memoizedProps = null;
 		this.memoizedState = null;
+		// update queue
+		this.updateQueue = null;
 
 		this.alternate = null;
 		// side effects
 		this.flags = NoFlags;
-
-		this.updateQueue = null;
 	}
 }
 
 export class FiberRootNode {
 	container: Container;
 	current: FiberNode;
+	// finally the root fiber
 	finishedWork: FiberNode | null;
 	constructor(container: Container, hostRootFiber: FiberNode) {
 		this.container = container;

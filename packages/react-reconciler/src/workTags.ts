@@ -1,3 +1,4 @@
+// what type kind of fiber
 export type workTag =
 	| typeof FunctionComponent
 	| typeof HostComponent
