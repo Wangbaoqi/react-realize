@@ -8,7 +8,11 @@ let workInProgress: FiberNode | null = null;
 function prepareFreshStack(root: FiberRootNode) {
 	workInProgress = createWorkInProgress(root.current, {});
 }
-// schedule
+
+/**
+ * schedule
+ * @param fiber (hostRootFiber or classFiber)
+ */
 export function scheduleUpdateOnFiber(fiber: FiberNode) {
 	const root = markUpdateFromFiberToRoot(fiber);
 	renderRoot(root);
