@@ -1,5 +1,5 @@
-import { Key, Props, Ref } from 'shared/ReactTypes';
-import { workTag } from './workTags';
+import { IReactElement, Key, Props, Ref } from 'shared/ReactTypes';
+import { FunctionComponent, HostComponent, workTag } from './workTags';
 import { Flags, NoFlags } from './fiberFlags';
 import { Container } from 'hostConfig';
 export class FiberNode {
@@ -21,6 +21,7 @@ export class FiberNode {
 	alternate: FiberNode | null;
 	// sideEffects flags
 	flags: Flags;
+	subtreeFlags: Flags;
 	// update queue
 	updateQueue: unknown;
 
@@ -48,6 +49,7 @@ export class FiberNode {
 		this.alternate = null;
 		// side effects
 		this.flags = NoFlags;
+		this.subtreeFlags = NoFlags;
 	}
 }
 
@@ -81,6 +83,7 @@ export const createWorkInProgress = (
 		// update
 		workInProgress.pendingProps = pendingProps;
 		workInProgress.flags = NoFlags;
+		workInProgress.subtreeFlags = NoFlags;
 	}
 	workInProgress.type = current.type;
 	workInProgress.updateQueue = current.updateQueue;
@@ -89,3 +92,17 @@ export const createWorkInProgress = (
 	workInProgress.memoizedProps = current.memoizedProps;
 	return workInProgress;
 };
+
+export function createFiberFromElement(element: IReactElement): FiberNode {
+	const { type, key, props } = element;
+	let fiberTag: workTag = FunctionComponent;
+
+	if (typeof type === 'string') {
+		fiberTag = HostComponent;
+	} else if (typeof type !== 'function' && __DEV__) {
+		console.warn('未定义的type类型');
+	}
+	const fiber = new FiberNode(fiberTag, props, key);
+	fiber.type = type;
+	return fiber;
+}

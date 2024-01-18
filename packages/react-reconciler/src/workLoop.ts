@@ -40,10 +40,18 @@ function renderRoot(root: FiberRootNode) {
 			workLoop();
 			break;
 		} catch (e) {
-			console.warn(e, '');
+			if (__DEV__) {
+				console.warn(e, '');
+			}
 			workInProgress = null;
 		}
 	} while (true);
+
+	const finishedWork = root.current.alternate;
+
+	root.finishedWork = finishedWork;
+
+	commitWork(root);
 }
 
 function workLoop() {
@@ -54,7 +62,7 @@ function workLoop() {
 
 function performanceUnitOfWork(fiber: FiberNode) {
 	// return child fiberNode
-	const next: FiberNode = beginWork(fiber);
+	const next = beginWork(fiber);
 
 	fiber.memoizedProps = fiber.pendingProps;
 

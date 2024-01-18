@@ -4,6 +4,7 @@ import url from 'url';
 
 import ts from 'rollup-plugin-typescript2';
 import cjs from '@rollup/plugin-commonjs';
+import replace from '@rollup/plugin-replace';
 
 // resolve __dirname not defined in ES Module
 const __filename = url.fileURLToPath(import.meta.url);
@@ -39,6 +40,11 @@ export const getPackageJSON = (pkgName) => {
  * @param {*} {}
  * @returns
  */
-export const getBaseRollupPlugin = ({ typescript = {} } = {}) => {
-	return [cjs(), ts(typescript)];
+export const getBaseRollupPlugin = ({
+	alias = {
+		__DEV__: true
+	},
+	typescript = {}
+} = {}) => {
+	return [replace(alias), cjs(), ts(typescript)];
 };
