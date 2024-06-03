@@ -10,6 +10,16 @@ import {
 
 // react source code here params (type, key, ref, self, source, owner, props)
 // self、source、 owner params are used development environments
+
+/**
+ * Create a React element with the given type, key, ref, and props.
+ *
+ * @param {Type} type - The type of the React element
+ * @param {Key} key - The key of the React element
+ * @param {Ref} ref - The ref of the React element
+ * @param {Props} props - The props of the React element
+ * @return {IReactElement} The created React element
+ */
 export const ReactElement = (
 	type: Type,
 	key: Key,
