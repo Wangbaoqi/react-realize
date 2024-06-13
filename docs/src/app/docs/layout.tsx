@@ -1,6 +1,6 @@
 'use client';
-import { NavBar } from '@/components/blogLayout';
-import { Sidebar } from '@/components/sourceLayout';
+import { NavBar } from '@/components/layout';
+import { Sidebar } from '@/components/layout';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 

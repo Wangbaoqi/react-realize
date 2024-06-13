@@ -1,8 +1,8 @@
 import { allPosts } from 'contentlayer/generated';
 import { notFound } from 'next/navigation';
-import MDXContent from '@/components/MDX/MDXContent';
+import MDXContent from '@/components/mdx/MDXContent';
 import { getHeadings } from '@/lib/docs/utils';
-import { Toc } from '@/components/blogLayout';
+import { Toc } from '@/components/layout';
 
 export function generateStaticParams() {
   return allPosts.map((post) => ({

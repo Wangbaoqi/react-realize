@@ -11,7 +11,6 @@ const nextUIConf: NextUIPluginConfig = {
   // defaultExtendTheme: 'dark',
   addCommonColors: true,
   layout: {
-    spacingUnit: 4, // in px
     disabledOpacity: 0.5, // this value is applied as opacity-[value] when the component is disabled
     dividerWeight: '1px', // h-divider the default height applied to the divider component
     fontSize: {
@@ -40,17 +39,11 @@ const nextUIConf: NextUIPluginConfig = {
   themes: {
     light: {
       layout: {},
-      colors: {
-        // 'code-mdx': '#ff4ecd',
-        // 'code-background': '#363449'
-      }
+      colors: {}
     },
     dark: {
       layout: {},
-      colors: {
-        // 'code-mdx': '#06B7DB',
-        // 'code-background': '#0D0B0B'
-      }
+      colors: {}
     }
   }
 };
@@ -60,6 +53,7 @@ const config: Config = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/config/**/*.{js,ts,jsx,tsx,mdx}',
     './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'
   ],
   theme: {
@@ -302,9 +296,9 @@ const config: Config = {
 };
 export default config;
 
-function addVariablesForColors({ addBase, theme }) {
-  let allColors = flattenColorPalette(theme('colors'));
-  let newVars = Object.fromEntries(
+function addVariablesForColors({ addBase, theme }: any) {
+  const allColors = flattenColorPalette(theme('colors'));
+  const newVars = Object.fromEntries(
     Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
   );
 

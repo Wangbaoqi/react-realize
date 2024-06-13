@@ -1,16 +1,9 @@
 'use client';
-import React, {
-  SetStateAction,
-  memo,
-  useEffect,
-  useMemo,
-  useState
-} from 'react';
+import React, { memo, useEffect, useMemo } from 'react';
 import { usePathname } from 'next/navigation';
 import NextLink from 'next/link';
 
 import { sourceRoutes, sourceRoutesItemType } from '@/config/routes';
-import { Divider, Accordion, AccordionItem, Avatar } from '@nextui-org/react';
 import { ChevronRightLinearIcon } from '@/components/icons';
 import clsx from 'clsx';
 import { useSourceSidebar } from '@/store/sourceSidebar';

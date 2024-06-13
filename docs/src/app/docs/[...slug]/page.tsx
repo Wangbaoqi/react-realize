@@ -3,8 +3,8 @@ import React from 'react';
 import { allDocs } from 'contentlayer/generated';
 import { getHeadings } from '@/lib/docs/utils';
 import { notFound } from 'next/navigation';
-import MDXContent from '@/components/MDX/MDXContent';
-import { Toc } from '@/components/blogLayout';
+import MDXContent from '@/components/mdx/MDXContent';
+import { Toc } from '@/components/layout';
 
 export default function Page({ params }: { params: { slug: string[] } }) {
   const { slug } = params;

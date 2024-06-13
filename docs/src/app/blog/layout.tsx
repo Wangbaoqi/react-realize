@@ -1,4 +1,4 @@
-import { NavBar, PostWrapper } from '@/components/blogLayout';
+import { NavBar } from '@/components/layout';
 import React from 'react';
 
 interface LayoutProp {

@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useMDXComponent } from 'next-contentlayer/hooks';
-import { MDXComponents } from '@/components/MDX';
+import { MDXComponents } from '@/components/mdx';
 
 type MdxType = {
   code: string;

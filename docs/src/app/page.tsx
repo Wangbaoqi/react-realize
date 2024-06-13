@@ -1,9 +1,8 @@
-import { NavBar, Footer } from '@/components/blogLayout';
+import { NavBar, Footer } from '@/components/layout';
 import { Suspense } from 'react';
-import { HomeCard } from '@/components/homeLayout/HomeCard';
+import { HomeCard } from '@/components/business';
 import { Metadata } from 'next/types';
 import { siteConfig, siteConfigNav } from '@/config/site';
-import { allDocs, Post } from 'contentlayer/generated';
 
 export function generateMetadata(): Metadata {
   return {

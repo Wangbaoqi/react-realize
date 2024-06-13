@@ -2,8 +2,6 @@ import cn from 'clsx';
 import * as React from 'react';
 import { forwardRefWithAs } from './forwardRefWithAs';
 
-// import { LinkOutline } from '@nant-design/nant-icons/dist/react/LinkOutline';
-
 export interface HeadingProps {
   className?: string;
   isPageAnchor?: boolean;

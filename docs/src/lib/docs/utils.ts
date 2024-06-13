@@ -6,7 +6,7 @@ export type Heading = { level: number; text: string; id: string };
 const slugger = new Slugger();
 
 export function getHeadings(markdownText: string | undefined): Heading[] {
-  let headings: Heading[] = [];
+  const headings: Heading[] = [];
 
   if (!markdownText) {
     return headings;

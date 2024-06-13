@@ -11,9 +11,6 @@ interface ViewMoreButtonProps {
 
 export function MoreButton({ redirectRoute, tag }: ViewMoreButtonProps) {
   const router = useRouter();
-
-  console.log(BUTTON_BY_TAGS[tag], 'BUTTON_BY_TAGS[tag]');
-
   return (
     <Button
       className={`group items-center whitespace-nowrap pl-4 pr-2 backdrop-blur-sm ${BUTTON_BY_TAGS[tag]}`}

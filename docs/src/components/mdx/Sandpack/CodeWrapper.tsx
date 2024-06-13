@@ -10,8 +10,6 @@ import {
   UnstyledOpenInCodeSandboxButton
 } from '@codesandbox/sandpack-react';
 
-// import { PlayOutline } from '@nant-design/nant-icons/dist/react/PlayOutline';
-
 interface IPresetProps {
   providedFiles: string[];
 }

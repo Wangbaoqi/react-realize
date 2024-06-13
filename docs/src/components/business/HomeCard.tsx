@@ -19,6 +19,8 @@ export function HomeCard({ title, tag, redirectRoute }: HomeCardProps) {
     .sort((a: Docs, b: Docs) =>
       compareDesc(new Date(a.date), new Date(b.date))
     );
+
+  if (!docs.length) return null;
   return (
     <div>
       <div className='max-w-7xl mx-auto flex items-center justify-between gap-3 px-10 pt-5'>
@@ -26,7 +28,7 @@ export function HomeCard({ title, tag, redirectRoute }: HomeCardProps) {
           className={`relative text-3xl font-bold tracking-tight ${TITLES_BY_TAG[tag]}`}
         >
           <div
-            className={`absolute -left-8  h-12 w-32 rounded-full ${COLORS_BY_TAGS[tag]}`}
+            className={`absolute -left-8  h-12 w-32 blur-3xl rounded-full ${COLORS_BY_TAGS[tag]}`}
           ></div>
           {title}
         </h2>
